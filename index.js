@@ -7,6 +7,9 @@ const express = require('express')
 //3.import cors
 const cors = require('cors')
 
+//9. import router
+const router = require('./routes')
+
 //4.create express server
 const pfServer = express()
 
@@ -24,3 +27,8 @@ pfServer.listen(PORT,()=>{
     console.log(`Server running successfully at port number : ${PORT}`);
     
 })
+
+//get  request
+// pfServer.get('/',(req,res)=>{
+//     res.send('Hello from express server')
+// })
