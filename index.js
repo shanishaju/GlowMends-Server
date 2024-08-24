@@ -7,7 +7,7 @@ const express = require('express')
 //3.import cors
 const cors = require('cors')
 
-//9. import router
+//9. import router the use it under step6
 const router = require('./routes')
 
 //4.create express server
@@ -18,6 +18,9 @@ pfServer.use(cors())
 
 //6.  use json method -Returns middleware that can parses json
 pfServer.use(express.json())
+
+//10 use router
+pfServer.use(router)
  
 //7.set port number
 PORT = 4000 || process.env.PORT
