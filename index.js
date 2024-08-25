@@ -10,6 +10,9 @@ const cors = require('cors')
 //9. import router the use it under step6
 const router = require('./routes')
 
+//11 import connection.js after creating db and connection.js created
+require('./connection')
+
 //4.create express server
 const pfServer = express()
 
