@@ -1,4 +1,4 @@
-
+const jwt = require('jsonwebtoken')
 
 
 //register
@@ -30,3 +30,28 @@ exports.registerController = async(req, res)=>{
     }
     
 }
+
+//login
+exports.loginController = async(req,res)=>{
+  const {email,password} = req.body
+
+  try {
+    const existingUser = await users.findOne({email,password})
+    if(existingUser){
+
+      //token for authentication and send token to frontend
+      const token = jwt.sign({userId:existingUser._id},'secretKey')
+      res.status(200).json({existingUser,token})
+    }
+    else{
+      res.status(406).json('Invalid emailId or Password')
+    }
+    
+  } catch (error) {
+    res.status(401).json(`Login failed due to ${error}`)
+     
+  }
+
+  //toekn used for generatig tokens for authorization
+}
+

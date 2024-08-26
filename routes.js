@@ -14,7 +14,8 @@ const router = new express.Router()
 router.post('/register',usercontroller.registerController)
 
 
-
+//login
+router.post('/login',usercontroller.loginController)
 
 
 
