@@ -29,3 +29,13 @@ const fileFilter=(req,file,callback)=>{
         return callback(new Error('only png,jpeg,jpg files are accepted'))
      }
 }
+
+const multerConfig = multer({
+    storage,
+    fileFilter
+
+})
+
+
+//export
+module.exports = multerConfig

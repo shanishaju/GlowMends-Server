@@ -5,6 +5,7 @@ const express = require("express");
 const usercontroller = require("./controller/userController");
 //import addProductController
 const productController = require("./controller/productController");
+const multerConfig = require("./middleware/multerMiddleware");
 //2.create an object for router class
 const router = new express.Router();
 
@@ -21,7 +22,7 @@ router.post("/register", usercontroller.registerController);
 router.post("/login", usercontroller.loginController);
 
 //admin addProduct
-router.post("/addproduct", productController.addProductController);
+router.post("/addproduct",multerConfig.single('productImage'), productController.addProductController);
 
 
 
