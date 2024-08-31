@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
   //by which name the file should be stored
   filename: (req, file, callback) => {
     const filename = `image-${Date.now()}-${file.originalname}`//format of storing the file
-    callback(null, filename)//setting the name
+    callback(null, filename) //setting the name
   }
 })
 
