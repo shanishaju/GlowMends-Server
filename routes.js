@@ -24,9 +24,11 @@ router.post("/login", usercontroller.loginController);
 //admin addProduct
 router.post("/addproduct",multerConfig.single('productImage'), productController.addProductController);
 
+//all product
+router.get("/allproducts",productController.getAllProductsController)
 
-
-
+//home products
+router.get("/homeproducts",productController.homeProductsController)
 
 
 

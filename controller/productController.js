@@ -26,3 +26,34 @@ exports.addProductController = async (req, res) => {
 
   //multer-- Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 }
+//All progect Controller
+exports.getAllProductsController = async(req,res)=>{
+
+  try {
+    //fect all products from db
+    const allProducts = await products.find()
+    if(allProducts){
+      res.status(200).json(allProducts)
+    }
+    else{
+      res.status(402).json("No Products")
+    }
+    
+  } catch (error) {
+    res.status(401).json(error)
+    
+  }
+}
+
+//home project
+ exports.homeProductsController = async(req,res)=>{
+
+  try {
+    const homeProducts = await products.find().limit(3)
+    res.status(200).json(homeProducts)
+    
+  } catch (error) {
+    res.status(403).json(error)
+    
+  }
+ }

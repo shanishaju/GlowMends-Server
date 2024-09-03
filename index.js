@@ -24,6 +24,9 @@ pfServer.use(express.json())
 
 //10 use router
 pfServer.use(router)
+
+//export uploads file  // express.static: upload from server
+pfServer.use('/uploads',express.static('./uploads'))
  
 //7.set port number
 PORT = 4000 || process.env.PORT
