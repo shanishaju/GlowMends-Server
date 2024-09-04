@@ -1,4 +1,6 @@
 const products = require("../modal/productModal")
+//db logics
+
 
 exports.addProductController = async (req, res) => {
   console.log("inside product controller")
@@ -56,4 +58,21 @@ exports.getAllProductsController = async(req,res)=>{
     res.status(403).json(error)
     
   }
+ }
+
+ //delete products
+
+ exports.deleteProductController = async(req,res)=>{
+  const {id}= req.params
+  console.log(id);
+  try {
+
+    
+    const project = await products.findByIdAndDelete({_id:id})
+    res.status(200).json(project)
+  } catch (error) {
+    res.status(405).json(error)
+  }
+  
+
  }

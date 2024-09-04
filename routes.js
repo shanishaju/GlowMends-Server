@@ -30,7 +30,9 @@ router.get("/allproducts",productController.getAllProductsController)
 //home products
 router.get("/homeproducts",productController.homeProductsController)
 
+//delete products id parameter
 
+router.delete("/delete/:id",productController.deleteProductController)
 
 //4 export the router then imoort it on index.js
 module.exports = router;
