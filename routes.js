@@ -34,5 +34,9 @@ router.get("/homeproducts",productController.homeProductsController)
 
 router.delete("/delete/:id",productController.deleteProductController)
 
+
+//update product
+router.put("/editproject/:id",productController.editProductController)
+
 //4 export the router then imoort it on index.js
 module.exports = router;

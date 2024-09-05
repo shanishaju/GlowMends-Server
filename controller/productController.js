@@ -76,3 +76,22 @@ exports.getAllProductsController = async(req,res)=>{
   
 
  }
+
+ //edit product
+
+exports.editProductController = async (req, res) => {
+     try {
+      const { id } = req.params 
+      const exisitingProduct = await products.findByIdAndUpdate(
+        {_id : id}, req.body, { new: true } 
+      )
+      res.status(200).json(exisitingProduct)
+      
+     } catch (error) {
+      res.status(403).json(error)
+      
+     }
+}
+
+
+
