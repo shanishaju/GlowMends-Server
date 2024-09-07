@@ -36,7 +36,8 @@ router.get("/homeproducts",productController.homeProductsController)
 
 router.delete("/delete/:id",productController.deleteProductController)
 
-
+// admin all products
+router.get("/adminallproducts",productController.getAdminAllProductsController)
 //update product
 router.put("/editproject/:id",productController.editProductController)
 
@@ -47,3 +48,5 @@ router.post("/contact",contactsController.contactController)
 router.get("/getcontact",contactsController.getAllContactController)
 //4 export the router then imoort it on index.js
 module.exports = router;
+
+//
