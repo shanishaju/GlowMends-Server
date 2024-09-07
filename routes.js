@@ -5,6 +5,8 @@ const express = require("express");
 const usercontroller = require("./controller/userController");
 //import addProductController
 const productController = require("./controller/productController");
+const contactsController = require("./controller/contactsController");
+
 const multerConfig = require("./middleware/multerMiddleware");
 //2.create an object for router class
 const router = new express.Router();
@@ -38,5 +40,10 @@ router.delete("/delete/:id",productController.deleteProductController)
 //update product
 router.put("/editproject/:id",productController.editProductController)
 
+//contact
+router.post("/contact",contactsController.contactController)
+
+//getcontact
+router.get("/getcontact",contactsController.getAllContactController)
 //4 export the router then imoort it on index.js
 module.exports = router;
