@@ -6,12 +6,12 @@ const usercontroller = require("./controller/userController");
 //import addProductController
 const productController = require("./controller/productController");
 const contactsController = require("./controller/contactsController");
+const cartController = require("./controller/cartController");
+
 
 const multerConfig = require("./middleware/multerMiddleware");
 //2.create an object for router class
 const router = new express.Router();
-
-
 
 
 
@@ -46,6 +46,32 @@ router.post("/contact",contactsController.contactController)
 
 //getcontact
 router.get("/getcontact",contactsController.getAllContactController)
+
+
+
+
+//cart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //4 export the router then imoort it on index.js
 module.exports = router;
 
