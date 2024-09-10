@@ -46,13 +46,23 @@ router.post("/contact",contactsController.contactController)
 
 //getcontact
 router.get("/getcontact",contactsController.getAllContactController)
-
-
-
-
+ 
 //cart
 
+// add to cart
+router.post("/add-cart",cartController.addTocartController)
 
+//get cart item
+// router.get("/:userId",contactsController.getCartItemsController)
+
+// //remove item from cart
+// router.get("/remove/:userId/:productId",contactsController.removeFromCartController)
+
+
+
+//single product
+
+router.get('/single-product/:id',productController.getSingleProductController)
 
 
 

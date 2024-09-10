@@ -30,7 +30,7 @@ exports.addProductController = async (req, res) => {
 
   //multer-- Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 };
-//All progect Controller
+//All project Controller
 exports.getAllProductsController = async (req, res) => {
   const searchKey = req.query.search//search usring query parameter
 
@@ -54,6 +54,28 @@ exports.getAllProductsController = async (req, res) => {
     res.status(401).json(error);
   }
 };
+
+
+//Single product API
+exports.getSingleProductController = async (req,res)=>{
+  const id = req.params.id;
+  try { 
+    const singleProduct = await products.findById(id);
+    if(!singleProduct){
+      res.status(200).json("no such product")
+
+    }
+    else{
+      res.status(200).json(singleProduct)
+    }
+    
+
+}
+catch(error){
+  res.status(400).json(error)
+}
+}
+
 
 //admin all product 
 exports.getAdminAllProductsController = async (req, res) => {
@@ -110,4 +132,5 @@ exports.editProductController = async (req, res) => {
     res.status(403).json(error);
   }
 };
+
 
