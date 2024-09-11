@@ -8,37 +8,37 @@ const products = require("../modal/productModal")
 
 //addToCart Item
 exports.addTocartController = async (req, res) => {
-    const { userId, productId, quantity } = req.body;
-    console.log("Received request:", req.body); // Log the request body
-    
-    try {
-      let cart = await carts.findOne({ userId: userId });
+  const { userId, productId, quantity } = req.body;
+  console.log("Received request:", req.body); // Log the request body
   
-      if (!cart) {
-        cart = new carts({ userId, items: [{ productId, quantity }] });
-        console.log("Creating a new cart:", cart); // Log the new cart creation
+  try {
+    let cart = await carts.findOne({ userId: userId });
+
+    if (!cart) {
+      cart = new carts({ userId, items: [{ productId, quantity }] });
+      console.log("Creating a new cart:", cart); // Log the new cart creation
+    } else {
+      const itemIndex = cart.items.findIndex(
+        (item) => item.productId.toString() === productId
+      );
+
+      if (itemIndex > -1) {
+        cart.items[itemIndex].quantity += quantity;
+        console.log("Updated quantity for existing item:", cart.items[itemIndex]); // Log the updated item
       } else {
-        const itemIndex = cart.items.findIndex(
-          (item) => item.productId.toString() === productId
-        );
-  
-        if (itemIndex > -1) {
-          cart.items[itemIndex].quantity += quantity;
-          console.log("Updated quantity for existing item:", cart.items[itemIndex]); // Log the updated item
-        } else {
-          cart.items.push({ productId, quantity });
-          console.log("Added new item to cart:", cart.items); // Log new item addition
-        }
+        cart.items.push({ productId, quantity });
+        console.log("Added new item to cart:", cart.items); // Log new item addition
       }
-  
-      await cart.save();
-      console.log("Cart saved:", cart); // Log the saved cart
-      return res.status(200).json(cart);
-    } catch (error) {
-      console.error("Error in adding to cart:", error); // Log the error
-      return res.status(400).json({ error: error.message });
     }
-  };
+
+    await cart.save();
+    console.log("Cart saved:", cart); // Log the saved cart
+    return res.status(200).json(cart);
+  } catch (error) {
+    console.error("Error in adding to cart:", error); // Log the error
+    return res.status(400).json({ error: error.message });
+  }
+};
   
 //get items in cart
 exports.getCartItemsController = async(req,res)=>{
