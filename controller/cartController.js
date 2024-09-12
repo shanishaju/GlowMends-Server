@@ -1,5 +1,6 @@
 //import cart modal
 
+const { default: mongoose } = require("mongoose");
 const carts = require("../modal/cartModal")
 
 //import product modal
@@ -40,19 +41,61 @@ exports.addTocartController = async (req, res) => {
   }
 };
   
-//get items in cart
-exports.getCartItemsController = async(req,res)=>{
-    const {  userId } = req.params
+//get items from cart
+// exports.getCartItemsController = async(req,res)=>{
+//     const {  userId } = req.params
 
-    try {
-        const carts = await carts.findOne({userId}).populate('items.productId')  // .populate() is used to automatically fill in data from related collections, instead of just showing their ObjectId.
-        res.status(200).json(carts)
+//     try {
+//         const cart = await carts.findOne({userId}).populate('items.productId')  // .populate() is used to automatically fill in data from related collections, instead of just showing their ObjectId.
+//         res.status(200).json(cart)
+//         console.log(cart);
         
         
-    } catch (error) {
-        res.status(401).json(error)
+        
+//     } catch (error) {
+//         res.status(401).json(error)
+//     }
+// }
+
+//get items from cart
+
+
+exports.getCartItemsController = async (req, res) => {
+  const { id } = req.params; 
+
+  try {
+    const objectId = new mongoose.Types.ObjectId(id); // Use 'new' keyword
+
+    // Fetch the cart for the user and populate the product details
+    const userCart = await carts.findOne({ userId: objectId }).populate('items.productId');
+
+    if (!userCart) {
+      return res.status(404).json({ message: 'Cart not found for this user' });
     }
-}
+
+    res.status(200).json(userCart);
+    console.log(userCart); // Logging cart details for debugging
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //remove item from cart
 

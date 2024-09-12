@@ -52,11 +52,11 @@ router.get("/getcontact",contactsController.getAllContactController)
 // add to cart
 router.post("/add-cart",cartController.addTocartController)
 
-//get cart item
-// router.get("/:userId",contactsController.getCartItemsController)
+// get cart item
+router.get("/getcart/:id",cartController.getCartItemsController)
 
-// //remove item from cart
-// router.get("/remove/:userId/:productId",contactsController.removeFromCartController)
+//remove item from cart
+// router.get("/remove/:userId/:productId",cartController.removeFromCartController)
 
 
 
