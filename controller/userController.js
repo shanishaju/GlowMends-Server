@@ -7,7 +7,7 @@ const users = require("../modal/userModal");
 
 exports.registerController = async(req, res)=>{
   
-      const {firstname, lastname, email, password} =req.body
+      const {firstname, lastname, email, password,role} =req.body
       console.log(firstname,lastname,email,password);
       //   after creating modal. check the datas in mongo db if no add to db\
     try {
@@ -18,7 +18,7 @@ exports.registerController = async(req, res)=>{
       }
       else{
         const newUser = new users({
-          firstname,lastname,email,password
+          firstname,lastname,email,password,role
       })
       //save() - store the data in mongodb
       await newUser.save()
