@@ -24,7 +24,7 @@ exports.addTocartController = async (req, res) => {
       );
 
       if (itemIndex > -1) {
-        cart.items[itemIndex].quantity += quantity;
+        cart.items[itemIndex].quantity = quantity;
         console.log("Updated quantity for existing item:", cart.items[itemIndex]); // Log the updated item
       } else {
         cart.items.push({ productId, quantity });
@@ -84,33 +84,17 @@ exports.getCartItemsController = async (req, res) => {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //remove item from cart
 
  exports.removeFromCartController = async(req,res)=>{
     const { userId, productId }= req.params
-    try { 
-        const carts = await carts.findOne({userId})
-        if(!carts) {
+    try {
+        const cart = await carts.findOne({userId})
+        if(!cart) {
             res.status(404).json("Cart not found")
         }
-        carts.items = carts.items.filter(item=> item.productId.toString() !== productId)
-        await carts.save()
+        cart.items = cart.items.filter(item=> item.productId.toString() !== productId)
+        await cart.save()
         res.status(200).json(carts)
     } catch (error) {
         res.status(402).json(error)

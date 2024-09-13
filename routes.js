@@ -56,7 +56,7 @@ router.post("/add-cart",cartController.addTocartController)
 router.get("/getcart/:id",cartController.getCartItemsController)
 
 //remove item from cart
-// router.get("/remove/:userId/:productId",cartController.removeFromCartController)
+router.delete("/remove/:userId/:productId",cartController.removeFromCartController)
 
 
 
