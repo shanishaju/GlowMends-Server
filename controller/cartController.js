@@ -62,18 +62,21 @@ exports.addTocartController = async (req, res) => {
 
 exports.getCartItemsController = async (req, res) => {
   const { id } = req.params; 
+  const { quantity } = req.body; // Product ID and new quantity from the request body
+
 
   try {
     const objectId = new mongoose.Types.ObjectId(id); // Use 'new' keyword
 
     // Fetch the cart for the user and populate the product details
     const userCart = await carts.findOne({ userId: objectId }).populate('items.productId');
-
+      
     if (!userCart) {
       return res.status(404).json({ message: 'Cart not found for this user' });
     }
-
+    
     res.status(200).json(userCart);
+
     console.log(userCart); // Logging cart details for debugging
   } catch (error) {
     console.error(error);
