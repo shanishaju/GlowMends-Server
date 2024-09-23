@@ -32,7 +32,7 @@ exports.addProductController = async (req, res) => {
 };
 //All project Controller
 exports.getAllProductsController = async (req, res) => {
-  const searchKey = req.query.search//search usring query parameter
+  const searchKey = req.query.search//search using query parameter
 
   try {
     //serachkey logic
